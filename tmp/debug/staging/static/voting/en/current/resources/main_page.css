@@ -1,0 +1,12 @@
+.student-label {
+  font-size: 16px;
+}
+
+.last-name {
+  font-weight: bold;
+}
+
+.number {
+  font-style: italic;
+  color: #999;
+}
