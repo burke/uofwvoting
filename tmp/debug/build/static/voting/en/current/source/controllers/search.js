@@ -16,7 +16,7 @@ Voting.searchController = SC.ObjectController.create(
   searchTerm: null,
 
   searchTermDidChange: function(target, key) {
-    var regexp = new RegExp(target.get(key), 'i');
+    var regexp = new RegExp("^"+target.get(key), 'i');
     var condition = "firstName MATCHES({exp}) OR lastName MATCHES({exp}) OR number MATCHES({exp})";
     var params = { exp: regexp };
     var query = SC.Query.local(Voting.Student, condition, params);

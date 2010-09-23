@@ -24,7 +24,7 @@ var StudentView = SC.View.extend(SC.Control, {
       this.voteButton.set('target', target);
       if (target.get('votedAt')) {
         var str = target.get('votedAt').toFormattedString("%b %d, %H:%M");
-        this.alreadyVotedLabel.set('value', "Voted at %@".fmt(str));
+        this.alreadyVotedLabel.set('value', "Voted %@".fmt(str));
         this.voteButton.set('isEnabled', false);
       }
     }

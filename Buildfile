@@ -5,3 +5,5 @@
 
 # Add initial buildfile information here
 config :all, :required => :sproutcore
+
+proxy "/students", :to => "localhost:3000"

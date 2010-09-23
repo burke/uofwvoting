@@ -13,21 +13,23 @@
 //
 Voting.main = function main() {
 
-  // Step 1: Instantiate Your Views
-  // The default code here will make the mainPane for your application visible
-  // on screen.  If you app gets any level of complexity, you will probably
-  // create multiple pages and panes.
   Voting.getPath('mainPage.mainPane').append() ;
 
-  // Step 2. Set the content property on your primary controller.
-  // This will make your app come alive!
-
-  var query = SC.Query.local(Voting.Student) ;
-  var students = Voting.store.find(query) ;
+  var students = Voting.store.find(Voting.STUDENTS_QUERY) ;
   Voting.studentsController.set('content', students) ;
 
-  // TODO: Set the content property on your primary controller
-  // ex: Voting.contactsController.set('content',Voting.contacts);
+  // couldn't figure out how to put this in a sensible namespace. I suck at javascript.
+  Voting.fullRefresh = function() {
+    Voting.store.refreshQuery(Voting.STUDENTS_QUERY) ;
+  };
+
+  // Basically pulls down the whole list every 30 seconds.
+  // this is non-ideal, but ehh. It's a practice app.
+  // TODO: investigate how to do this better.
+  // some way to push changes from rails -> SC would be wicked.
+  var timer = SC.Timer.schedule({
+    target: this, action: 'fullRefresh', interval: 30000, repeats: true
+  });
 
 } ;
 
